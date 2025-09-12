@@ -16,3 +16,6 @@ To do so, I curated a custom baseball dataset, labeled it in COCO format, and ma
 [**How a Hawk Scholar is Bringing Baseball Analytics to Life with AI**](https://www.sju.edu/news/how-hawk-scholar-bringing-baseball-analytics-life-ai)  
 *Nicolas Zywalewski, BS ’26, and Abolfazl Saghafi, PhD, are using deep learning to recreate pro-level baseball stats at a fraction of the cost.*  
 Written by **Luke Malanga**
+
+## Project Presentation
+[**Watch my step-by-step project presentation**](https://sju.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=d507fe15-2cb2-49ee-b3fe-b1e10141282a)
