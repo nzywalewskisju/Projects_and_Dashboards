@@ -17,6 +17,7 @@ Each project is organized in its own folder with a Google Colab notebook for int
 ### [Tableau Dashboards](Tableau_Dashboards/)
 - The dashboards cover a variety of topics and use cases, including business intelligence, sports analytics, and data storytelling.
 - Each dashboard is designed to communicate insights clearly and support real-world decision making.
+- [**View on Tableau Public**](https://public.tableau.com/app/profile/nicolas.zywalewski/vizzes)
 
 ### [Predicting Phillies Wins using MLR Model](Predicting_Phillies_Wins/)
 - Applied Multiple Linear Regression (MLR) to predict Philadelphia Phillies win totals  
