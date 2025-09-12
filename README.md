@@ -9,11 +9,6 @@ Each project is organized in its own folder with a Google Colab notebook for int
 - Includes a [step-by-step project presentation](https://sju.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=d507fe15-2cb2-49ee-b3fe-b1e10141282a) and [featured article](https://www.sju.edu/news/how-hawk-scholar-bringing-baseball-analytics-life-ai)  
 - [Open in Colab](https://colab.research.google.com/github/nzywalewskisju/Portfolio_Projects/blob/main/Deep_Learning_Exit_Velocity/Deep_Learning_Approach_for_Calculating_Exit_Velocity.ipynb)
 
-### [Airline Tweets Classification Project](Text_Classification_NN/)
-- Trained **two neural networks** (LSTM and CNN) to classify tweets about U.S. airlines  
-- Sentiment classification into **positive, negative, or neutral** categories 
-- [Open in Colab](https://colab.research.google.com/github/nzywalewskisju/Portfolio_Projects/blob/main/Text_Classification_NN/Airline_Tweets_Classification_Project.ipynb)
-
 ### [Baseball Statistics Projections](baseball_statistics_projections/)
 - Projected **player On-Base Percentage (OBP)** using historical season data  
 - Handled missing values with **K-Nearest Neighbors (KNN) imputation**  
@@ -24,6 +19,11 @@ Each project is organized in its own folder with a Google Colab notebook for int
 - The dashboards cover a variety of topics and use cases, including business intelligence, sports analytics, and data storytelling
 - Each dashboard is designed to communicate insights clearly and support real-world decision making
 - [**View on Tableau Public**](https://public.tableau.com/app/profile/nicolas.zywalewski/vizzes)
+
+### [Airline Tweets Classification Project](Text_Classification_NN/)
+- Trained **two neural networks** (LSTM and CNN) to classify tweets about U.S. airlines  
+- Sentiment classification into **positive, negative, or neutral** categories 
+- [Open in Colab](https://colab.research.google.com/github/nzywalewskisju/Portfolio_Projects/blob/main/Text_Classification_NN/Airline_Tweets_Classification_Project.ipynb)
 
 ### [Predicting Phillies Wins using MLR Model](Predicting_Phillies_Wins/)
 - Applied Multiple Linear Regression (MLR) to predict Philadelphia Phillies win totals  
