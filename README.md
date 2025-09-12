@@ -18,9 +18,3 @@ Each project is organized in its own folder with a Google Colab notebook for int
 - Applied Multiple Linear Regression (MLR) to predict Philadelphia Phillies win totals  
 - Identified key performance factors influencing team success  
 - [Open in Colab](https://colab.research.google.com/github/nzywalewskisju/Portfolio_Projects/blob/main/Predicting_Phillies_Wins/Predicting_Phillies_Wins_using_MLR_Model.ipynb)
-
-## About This Repository 
-Each folder contains:  
-- A Google Colab notebook  
-- A detailed README with project overview, methods, and results  
-- Links to relevant presentations, articles, or external resources  
