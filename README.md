@@ -14,6 +14,10 @@ Each project is organized in its own folder with a Google Colab notebook for int
 - Sentiment classification into **positive, negative, or neutral** categories  
 - [Open in Colab](https://colab.research.google.com/github/nzywalewskisju/Portfolio_Projects/blob/main/Text_Classification_NN/Airline_Tweets_Classification_Project.ipynb)
 
+### [Tableau Dashboards](Tableau_Dashboards/)
+- The dashboards cover a variety of topics and use cases, including business intelligence, sports analytics, and data storytelling.
+- Each dashboard is designed to communicate insights clearly and support real-world decision making.
+
 ### [Predicting Phillies Wins using MLR Model](Predicting_Phillies_Wins/)
 - Applied Multiple Linear Regression (MLR) to predict Philadelphia Phillies win totals  
 - Identified key performance factors influencing team success  
