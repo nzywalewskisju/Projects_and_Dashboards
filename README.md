@@ -14,6 +14,12 @@ Each project is organized in its own folder with a Google Colab notebook for int
 - Sentiment classification into **positive, negative, or neutral** categories  
 - [Open in Colab](https://colab.research.google.com/github/nzywalewskisju/Portfolio_Projects/blob/main/Text_Classification_NN/Airline_Tweets_Classification_Project.ipynb)
 
+### [Baseball Statistics Projections](baseball_statistics_projections/)
+- Projected **player On-Base Percentage (OBP)** using historical season data  
+- Handled missing values with **K-Nearest Neighbors (KNN) imputation**  
+- Trained both **Random Forest** and **Gradient Boosting** models, with Gradient Boosting providing the best performance  
+- [Open in Colab](https://colab.research.google.com/github/nzywalewskisju/Portfolio_Projects/blob/main/baseball_statistics_projections/baseball_statistics_projections.ipynb)
+
 ### [Tableau Dashboards](Tableau_Dashboards/)
 - The dashboards cover a variety of topics and use cases, including business intelligence, sports analytics, and data storytelling.
 - Each dashboard is designed to communicate insights clearly and support real-world decision making.
