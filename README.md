@@ -1,7 +1,7 @@
 # Portfolio Projects
 Welcome to my portfolio!  
 This repository highlights projects I’ve worked on in data analytics, machine learning, and artificial intelligence.  
-Each project is organized in its own folder with a detailed README and a Google Colab notebook for interactive exploration.  
+Each project is organized in its own folder with a Google Colab notebook for interactive exploration, a detailed README, and other resources. 
 
 ## Projects
 ### [Deep Learning Approach for Calculating Exit Velocity](Deep_Learning_Exit_Velocity/)
