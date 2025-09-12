@@ -1,1 +1,1 @@
-
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/nzywalewskisju/Portfolio_Projects/blob/main/Deep_Learning_Exit_Velocity/Deep_Learning_Approach_for_Calculating_Exit_Velocity.ipynb)
