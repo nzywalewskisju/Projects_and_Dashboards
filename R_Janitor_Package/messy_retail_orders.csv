@@ -1,0 +1,11 @@
+First Name ,Last-Name, E-mail(Address),Secondary Email,Customer ID,Order ID,Order Date (Excel Serial),Ship Mode,Region,Product Name,Qty,Unit Price ($),Discount %,Payment Method,Satisfaction Level
+Joe,Smith,joe.smith17@gmail.com,NA,101,1234,45292,Second Class,East,Stapler - Black,2,5.99,0,Card,Extremely Satisfied
+Joe,Smith,joe.smith17@gmail.com,NA,101,4567,45382,Second Class,East,Paper Ream,1,4.25,0.1,Card,Extremely Satisfied
+Emily,Sanders,NA,NA,102,3451,45472,Standard Class,West,Notebook 200p,3,2.5,0,Card,Extremely Dissatisfied
+NA,Jones,djones12@yahoo.com,NA,NA,5367,45562,Standard Class,South,Binder 3in,1,6.49,0.15,Card,Neutral
+Dan,NA,dan1976@comcast.net,NA,103,9825,45652,First Class,South,Markers (Set),1,8.99,0,Card,Satisfied
+Ava,Miller,avamiller@icloud.com,NA,104,7548,45742,Standard Class,West,Paper Ream,5,4.25,0.05,Card,Satisfied
+Ava,Miller,avamiller@icloud.com,NA,104,1679,45832,Standard Class,West,Stapler - Black,2,5.99,0,Card,Dissatisfied
+Michael,Nelson,mikenelson@gmail.com,NA,105,4875,45922,First Class,Central,Desk Chair,1,89.99,0.2,Card,Extremely Satisfied
+NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+Hank,Johnson,hank_j12@gmail.com,NA,106,1683,45931,Second Class,East,Desk Lamp,1,24.5,0,Card,Satisfied
