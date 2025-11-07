@@ -20,7 +20,7 @@ This project shows:
 The dataset was intentionally left unclean so that the full cleaning workflow could be demonstrated step-by-step.
 
 You can view or download it here:  
-`./messy_retail_orders.csv`
+[`messy_retail_orders.csv`](./messy_retail_orders.csv)
 
 ---
 
