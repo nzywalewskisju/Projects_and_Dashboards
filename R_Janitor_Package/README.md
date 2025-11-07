@@ -40,7 +40,7 @@ These functions were demonstrated step-by-step during the data cleaning and expl
 |------|-------------|
 | [`Janitor.R`](./Janitor.R) | The R script used for all cleaning and summarization steps. |
 | [`messy_retail_orders.csv`](./messy_retail_orders.csv) | The dataset used in the cleaning demonstration. |
-| [`R Janitor Package Presentation.pptx`](./R%20Janitor%20Package%20Presentation.pptx) | Slide deck summarizing key functions and workflow. |
+| [`R Janitor Package Presentation.pdf`](./R%20Janitor%20Package%20Presentation.pdf) | Slide deck summarizing key functions and workflow. |
 | `README.md` | Project documentation (this file). |
 
 ---
