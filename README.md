@@ -29,3 +29,8 @@ Each project is organized in its own folder with a Google Colab notebook for int
 - Applied Multiple Linear Regression (MLR) to predict Philadelphia Phillies win totals  
 - Identified key performance factors influencing team success  
 - [Open in Colab](https://colab.research.google.com/github/nzywalewskisju/Portfolio_Projects/blob/main/Predicting_Phillies_Wins/Predicting_Phillies_Wins_using_MLR_Model.ipynb)
+
+### [R Janitor Package](R_Janitor_Package/)
+- Demonstrates practical data cleaning workflows using the **`janitor`** package in R  
+- Standardizes column names, removes empty/constant fields, identifies duplicates, and summarizes categorical variables  
+- Includes example dataset, R script, and accompanying presentation used for classroom instruction
