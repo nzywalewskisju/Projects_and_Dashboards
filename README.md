@@ -7,7 +7,6 @@ Hello! My name is Nick Zywalewski, and I am currently a senior at Saint Joseph's
 Welcome to my portfolio! This repository highlights projects I’ve worked on in data analytics, machine learning, and artificial intelligence.  
 Each project is organized in its own folder with a Google Colab notebook for interactive exploration, a detailed README, and other resources. 
 
-## Projects
 ### [Deep Learning Approach for Calculating Exit Velocity](Deep_Learning_Exit_Velocity/) **[Python]**
 - Built a deep learning model in Python to estimate baseball exit velocity using swing and pitch data  
 - Includes a [step-by-step project presentation](https://sju.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=d507fe15-2cb2-49ee-b3fe-b1e10141282a) and [featured article](https://www.sju.edu/news/how-hawk-scholar-bringing-baseball-analytics-life-ai)  
