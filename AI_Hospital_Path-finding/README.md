@@ -1,4 +1,5 @@
 # Robot Nurse Pathfinding Project
+I worked on this project with two classmates at Saint Joseph's University: Joseph Pepe and Oscar Nama.
 
 ## Project Overview
 This project simulates a robot nurse that helps hospital staff by delivering medication, collecting test samples, and acting as a telemedicine interface.
@@ -68,4 +69,5 @@ When the program is run, the following steps will take place:
 3. **Pathfinding:** The chosen algorithm is used to compute the shortest path between locations.
 4. **Executing Deliveries:** Using the optimal path, the robot completes its tasks one at a time, updating its own location after each delivery.
 5. **Checking Termination:** The program ends with 'SUCCESS', 'PARTIAL SUCCESS', OR 'FAILURE' and displays the path taken by the robot.
+
 6. **Optional Continuation:** While the GUI is open, the program is able to receive additional delivery requests. If they are given, the program repeats steps 2-5.
