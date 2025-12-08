@@ -9,7 +9,7 @@ Each project is organized in its own folder with a Google Colab notebook for int
 - Includes a [step-by-step project presentation](https://sju.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=d507fe15-2cb2-49ee-b3fe-b1e10141282a) and [featured article](https://www.sju.edu/news/how-hawk-scholar-bringing-baseball-analytics-life-ai)  
 - [Open in Colab](https://colab.research.google.com/github/nzywalewskisju/Portfolio_Projects/blob/main/Deep_Learning_Exit_Velocity/Deep_Learning_Approach_for_Calculating_Exit_Velocity.ipynb)
 
-### [Travel Agency Database and Web Application](DBMS_MYSQL_Server_with_Web_Browser/)
+### [Travel Agency Database and Web Application](DBMS_MySQL_Server_with_Web_Browser/)
 - Full stack system for managing clients, cruises, and bookings in a travel agency  
 - Built using Node.js, Express, MySQL, HTML, and CSS with secure user session authentication  
 - Includes dynamic search, CRUD capabilities, interest tracking, and booking management workflows  
