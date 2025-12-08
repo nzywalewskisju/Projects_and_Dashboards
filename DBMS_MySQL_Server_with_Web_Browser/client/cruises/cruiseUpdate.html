@@ -1,0 +1,287 @@
+  <!-- Joe Pepe, Oscar Nama, and Nick Zywalewski -->
+  <!-- Database Management Systems -->
+  <!-- 12/3/2025 -->
+  <!-- Final Project -->
+  <!-- Purpose: Implement desired functionality to contribute to a simulated travel agency website and database -->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Update Cruise</title>
+
+    <!-- Shared top bar + layout styles -->
+    <link rel="stylesheet" href="/images/pageStyling.css">
+    <!-- Shared form styling -->
+    <link rel="stylesheet" href="/images/formPageStyling.css">
+</head>
+
+<body class="form-page">
+
+    <!-- Top bar -->
+    <div class="top-bar">
+        <a href="http://localhost:3000/home" class="top-bar-logo-link">
+            <img src="/images/images/small_ship.jpg"
+                 alt="Travel Agency Icon">
+        </a>
+
+        <div class="top-bar-title">
+            Travel Agency
+        </div>
+
+        <a href="http://localhost:3000/logout"
+           onclick="return confirm('Are you sure you want to sign out? This will end your current session.');"
+           class="top-bar-signout">
+            <span>Sign Out</span>
+            <img src="/images/images/sign_out.jpg" alt="Sign Out">
+        </a>
+    </div>
+
+    <!-- Back link under top bar -->
+    <a href="/cruises" class="back-link-top">Back to Cruise Options</a>
+
+    <div class="form-content">
+
+        <!-- Page title -->
+        <h3 class="page-title">Update Cruise</h3>
+
+        <!-- Main form card -->
+        <div class="form-container">
+            <form name="cruiseUpdate"
+                  action="http://localhost:3000/cruise-update"
+                  method="post"
+                  autocomplete="off">
+
+                <p>Enter the Cruise ID you want to update. Leave any field blank to keep its current value.</p>
+
+                <!-- Cruise ID -->
+                <label for="cruise_id">Cruise ID to Update</label>
+                <input type="number"
+                       name="cruise_id"
+                       id="cruise_id"
+                       placeholder="Enter the cruise's ID"
+                       required>
+
+                <!-- New values -->
+                <label for="cruise_name">New Cruise Name</label>
+                <input type="text"
+                       name="cruise_name"
+                       id="cruise_name"
+                       placeholder="Enter the cruise's updated name">
+
+                <label for="origin">New Origin</label>
+                <input type="text"
+                       name="origin"
+                       id="origin"
+                       placeholder="Update the origin">
+                       
+
+                <label for="destination">New Destination</label>
+                <input type="text"
+                       name="destination"
+                       id="destination"
+                       placeholder="Update the destination">
+                       
+
+                <label for="departure_date">New Departure Date</label>
+                <input type="date"
+                       name="departure_date"
+                       id="departure_date"
+                       placeholder="Update the departure date">
+                       
+
+                <label for="arrival_date">New Arrival Date</label>
+                <input type="date"
+                       name="arrival_date"
+                       id="arrival_date"
+                       placeholder="Update the arrival date">
+                       
+
+                <label for="ticket_price">New Ticket Price (USD)</label>
+                <input type="number"
+                       step="0.01"
+                       min="0"
+                       name="ticket_price"
+                       id="ticket_price"
+                       placeholder="Enter the cruise's updated price">
+                       
+
+                <!-- Categories row -->
+                <label>New Categories</label>
+                <div class="interest-row">
+                    <select name="category1" id="category1">
+                        <option value="">Optional</option>
+                        <option value="Site-seeing">Site-seeing</option>
+                        <option value="Good for Kids">Good for Kids</option>
+                        <option value="Thrilling">Thrilling</option>
+                        <option value="Adults Only">Adults Only</option>
+                        <option value="Historical">Historical</option>
+                        <option value="Laid Back">Laid Back</option>
+                    </select>
+
+                    <span class="interest-or">and / or</span>
+
+                    <select name="category2" id="category2">
+                        <option value="">Optional</option>
+                        <option value="Site-seeing">Site-seeing</option>
+                        <option value="Good for Kids">Good for Kids</option>
+                        <option value="Thrilling">Thrilling</option>
+                        <option value="Adults Only">Adults Only</option>
+                        <option value="Historical">Historical</option>
+                        <option value="Laid Back">Laid Back</option>
+                    </select>
+
+                    <span class="interest-or">and / or</span>
+
+                    <select name="category3" id="category3">
+                        <option value="">Optional</option>
+                        <option value="Site-seeing">Site-seeing</option>
+                        <option value="Good for Kids">Good for Kids</option>
+                        <option value="Thrilling">Thrilling</option>
+                        <option value="Adults Only">Adults Only</option>
+                        <option value="Historical">Historical</option>
+                        <option value="Laid Back">Laid Back</option>
+                    </select>
+                </div>
+
+                <small>(Leave all three blank to keep existing categories. Enter 1-3 to replace them.)</small>
+
+                <!-- Submit -->
+                <div class="button-row">
+                    <input type="submit" value="Update Cruise">
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+        // Set the minimum date for Departure Date to today's date
+        function setMinDateForDeparture() {
+            const today = new Date();
+          
+            let month = today.getMonth() + 1; 
+            let day = today.getDate();
+            const year = today.getFullYear();
+
+            if (month < 10) month = '0' + month;
+            if (day < 10) day = '0' + day;
+
+            const minDate = `${year}-${month}-${day}`; 
+
+            const departureInput = document.getElementById('departure_date');
+            if (departureInput) {
+                departureInput.setAttribute('min', minDate);
+                
+                const arrivalInput = document.getElementById('arrival_date');
+                if (arrivalInput) {
+                    arrivalInput.setAttribute('min', minDate);
+                }
+            }
+        }
+
+        // Run the function when the page loads
+        setMinDateForDeparture();
+    </script>
+
+<script>
+    // Allows repopulation of boxes on the cruiseUpdate page
+
+    const params = new URLSearchParams(window.location.search);
+
+    function setValue(name) {
+        const el = document.querySelector(`[name="${name}"]`);
+        if (!el) return;
+        const val = params.get(name);
+        if (val !== null) {
+            el.value = val;
+        }
+    }
+
+    // text and number and date inputs
+    setValue("cruise_id");
+    setValue("cruise_name");
+    setValue("origin");
+    setValue("destination");
+    setValue("departure_date");
+    setValue("arrival_date");
+    setValue("ticket_price");
+
+    // category selects
+    function setSelect(name) {
+        const el = document.querySelector(`select[name="${name}"]`);
+        if (!el) return;
+        const val = params.get(name);
+        if (val !== null) {
+            el.value = val;
+        }
+    }
+
+    setSelect("category1");
+    setSelect("category2");
+    setSelect("category3");
+</script>
+
+<script>
+    // Client-side validation for updating a cruise
+    document.forms["cruiseUpdate"].addEventListener("submit", function (event) {
+        let form = this;
+        let errors = [];
+
+        // --- REQUIRED FIELD ---
+        if (!form.cruise_id.value || String(form.cruise_id.value).trim() === "") {
+            errors.push("Cruise ID to Update is required.");
+        }
+
+        // --- DATE LOGIC ---
+        const dep = form.departure_date.value;
+        const arr = form.arrival_date.value;
+
+        if (dep && !arr) {
+            errors.push("If updating the departure date, you must also enter a new arrival date.");
+        }
+        if (!dep && arr) {
+            errors.push("If updating the arrival date, you must also enter a new departure date.");
+        }
+
+        if (dep && arr) {
+            if (arr < dep) {
+                errors.push("New Arrival Date cannot be before New Departure Date.");
+            }
+}
+        
+
+        // --- PRICE VALIDATION ---
+        if (form.ticket_price.value) {
+            const price = Number(form.ticket_price.value);
+            if (isNaN(price) || price <= 0) {
+                errors.push("New Ticket Price must be greater than 0.");
+            }
+        }
+
+        // --- CATEGORY DUPLICATION CHECK ---
+        const c1 = form.category1.value;
+        const c2 = form.category2.value;
+        const c3 = form.category3.value;
+
+        function isFilled(v) { return v && v.trim() !== ""; }
+
+        if (isFilled(c1) && isFilled(c2) && c1 === c2) {
+            errors.push("Category 2 cannot match Category 1.");
+        }
+        if (isFilled(c1) && isFilled(c3) && c1 === c3) {
+            errors.push("Category 3 cannot match Category 1.");
+        }
+        if (isFilled(c2) && isFilled(c3) && c2 === c3) {
+            errors.push("Category 2 and Category 3 cannot match each other.");
+        }
+
+        // --- DISPLAY ERRORS ---
+        if (errors.length > 0) {
+            event.preventDefault();
+            alert("Please fix the following:\n\n" + errors.join("\n"));
+        }
+    });
+</script>

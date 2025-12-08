@@ -1,0 +1,236 @@
+  <!-- Joe Pepe, Oscar Nama, and Nick Zywalewski -->
+  <!-- Database Management Systems -->
+  <!-- 12/3/2025 -->
+  <!-- Final Project -->
+  <!-- Purpose: Implement desired functionality to contribute to a simulated travel agency website and database -->
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Search Cruises</title>
+
+    <!-- Shared top bar + layout styles -->
+    <link rel="stylesheet" href="/images/pageStyling.css">
+    <!-- Shared form styling -->
+    <link rel="stylesheet" href="/images/formPageStyling.css">
+</head>
+
+<body class="form-page">
+
+    <!-- Top bar -->
+    <div class="top-bar">
+        <a href="http://localhost:3000/home" class="top-bar-logo-link">
+            <img src="/images/images/small_ship.jpg" alt="Travel Agency Icon">
+        </a>
+
+        <div class="top-bar-title">
+            Travel Agency
+        </div>
+
+        <a href="http://localhost:3000/logout"
+            onclick="return confirm('Are you sure you want to sign out? This will end your current session.');"
+            class="top-bar-signout">
+            <span>Sign Out</span>
+            <img src="/images/images/sign_out.jpg" alt="Sign Out">
+        </a>
+    </div>
+
+    <!-- Back link under top bar / logo -->
+    <a href="/cruises" class="back-link-top">Back to Cruise Options</a>
+
+    <div class="form-content">
+
+        <!-- Page title -->
+        <h3 class="page-title">Search Cruises</h3>
+
+        <!-- Main form card -->
+        <div class="form-container">
+            <form name="cruiseSearch" action="http://localhost:3000/cruise-search" method="post" autocomplete="off">
+
+                <!-- Basic info -->
+                <label for="cruise_id">Cruise ID (if known)</label>
+                <input type="number" name="cruise_id" id="cruise_id" placeholder="Enter a positive number">
+
+                <label for="cruiseName">Cruise Name</label>
+                <input type="text" name="cruiseName" id="cruiseName" placeholder="Enter a cruise's name">
+
+                <label for="origin">Starting Location (Origin)</label>
+                <input type="text" name="origin" id="origin" placeholder="Enter a cruise's origin">
+
+                <label for="destination">Ending Location (Destination)</label>
+                <input type="text" name="destination" id="destination" placeholder="Enter a cruise's destination">
+
+                <!-- Categories row -->
+                <label>Categories</label>
+                <div class="interest-row">
+                    <select name="category1" id="category1">
+                        <option value="">Select Category</option>
+                        <option value="Site-seeing">Site-seeing</option>
+                        <option value="Good for Kids">Good for Kids</option>
+                        <option value="Thrilling">Thrilling</option>
+                        <option value="Adults Only">Adults Only</option>
+                        <option value="Historical">Historical</option>
+                        <option value="Laid Back">Laid Back</option>
+                    </select>
+
+                    <span class="interest-or">or</span>
+
+                    <select name="category2" id="category2">
+                        <option value=""></option>
+                        <option value="Site-seeing">Site-seeing</option>
+                        <option value="Good for Kids">Good for Kids</option>
+                        <option value="Thrilling">Thrilling</option>
+                        <option value="Adults Only">Adults Only</option>
+                        <option value="Historical">Historical</option>
+                        <option value="Laid Back">Laid Back</option>
+                    </select>
+
+                    <span class="interest-or">or</span>
+
+                    <select name="category3" id="category3">
+                        <option value=""></option>
+                        <option value="Site-seeing">Site-seeing</option>
+                        <option value="Good for Kids">Good for Kids</option>
+                        <option value="Thrilling">Thrilling</option>
+                        <option value="Adults Only">Adults Only</option>
+                        <option value="Historical">Historical</option>
+                        <option value="Laid Back">Laid Back</option>
+                    </select>
+                </div>
+
+                <!-- Departure date range -->
+                <label>Departure Date</label>
+                <div class="row">
+                    <div class="row-item">
+                        <span>From:</span>
+                        <input type="date" name="departure_date_from" id="departure_date_from">
+                    </div>
+                    <div class="row-item">
+                        <span>To:</span>
+                        <input type="date" name="departure_date_to" id="departure_date_to">
+                    </div>
+                </div>
+
+                <!-- Return date range -->
+                <label>Return Date</label>
+                <div class="row">
+                    <div class="row-item">
+                        <span>From:</span>
+                        <input type="date" name="arrival_date_from" id="arrival_date_from">
+                    </div>
+                    <div class="row-item">
+                        <span>To:</span>
+                        <input type="date" name="arrival_date_to" id="arrival_date_to">
+                    </div>
+                </div>
+
+                <!-- Length in days range -->
+                <label>Length in Days</label>
+                <div class="row">
+                    <div class="row-item">
+                        <span>From:</span>
+                        <input type="number" name="length_days_min" id="length_days_min" placeholder="ex. 5">
+                    </div>
+                    <div class="row-item">
+                        <span>To:</span>
+                        <input type="number" name="length_days_max" id="length_days_max">
+                    </div>
+                </div>
+
+                <!-- Ticket price range -->
+                <label>Ticket Price (USD)</label>
+                <div class="row">
+                    <div class="row-item">
+                        <span>From:</span>
+                        <input type="number" name="ticket_price_min" id="ticket_price_min" step="0.01" placeholder="ex. 800">
+                    </div>
+                    <div class="row-item">
+                        <span>To:</span>
+                        <input type="number" name="ticket_price_max" id="ticket_price_max" step="0.01">
+                    </div>
+                </div>
+
+                <!-- Submit -->
+                <div class="button-row">
+                    <input type="submit" value="Search Cruises">
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Prefill form fields with previous search parameters from URL query string
+        (function () {
+            const params = new URLSearchParams(window.location.search);
+            const form = document.forms["cruiseSearch"];
+
+            if (!form) return;
+
+            form.cruise_id.value = params.get("cruise_id") || "";
+            form.cruiseName.value = params.get("cruiseName") || "";
+            form.origin.value = params.get("origin") || "";
+            form.destination.value = params.get("destination") || "";
+            form.category1.value = params.get("category1") || "";
+            form.category2.value = params.get("category2") || "";
+            form.category3.value = params.get("category3") || "";
+            form.departure_date_from.value = params.get("departure_date_from") || "";
+            form.departure_date_to.value = params.get("departure_date_to") || "";
+            form.arrival_date_from.value = params.get("arrival_date_from") || "";
+            form.arrival_date_to.value = params.get("arrival_date_to") || "";
+            form.length_days_min.value = params.get("length_days_min") || "";
+            form.length_days_max.value = params.get("length_days_max") || "";
+            form.ticket_price_min.value = params.get("ticket_price_min") || "";
+            form.ticket_price_max.value = params.get("ticket_price_max") || "";
+        })();
+    </script>
+
+    <script>
+        document.forms["cruiseSearch"].addEventListener("submit", function (event) {
+            let form = this;
+            let errors = [];
+
+            // Helper for date comparisons
+            function checkDateRange(from, to, label) {
+                if (from && to && from > to) {
+                    errors.push(`${label}: 'From' date cannot be after 'To' date.`);
+                }
+            }
+
+            // Helper for numeric comparisons
+            function checkNumberRange(min, max, label) {
+                if (min && max && Number(min) > Number(max)) {
+                    errors.push(`${label}: Min cannot be greater than Max.`);
+                }
+            }
+
+            // ---- VALIDATION RULES ----
+            checkDateRange(form.departure_date_from.value, form.departure_date_to.value, "Departure Date");
+            checkDateRange(form.arrival_date_from.value, form.arrival_date_to.value, "Return Date");
+            checkNumberRange(form.length_days_min.value, form.length_days_max.value, "Length in Days");
+            checkNumberRange(form.ticket_price_min.value, form.ticket_price_max.value, "Ticket Price");
+
+            // Check for duplicate categories (if multiple selected)
+            const categories = [form.category1.value, form.category2.value, form.category3.value].filter(v => v);
+            const duplicates = categories.filter((v, i, a) => a.indexOf(v) !== i);
+            if (duplicates.length > 0) {
+                errors.push("Categories must not have duplicates.");
+            }
+
+            // Ensure Cruise ID is positive
+            if (form.cruise_id.value && Number(form.cruise_id.value) <= 0) {
+                errors.push("Cruise ID must be a positive number.");
+            }
+
+            // ---- HANDLE ERRORS ----
+            if (errors.length > 0) {
+                event.preventDefault(); // stop form submit
+                alert("Please fix the following:\n\n" + errors.join("\n"));
+            }
+        });
+    </script>
+
+
+</body>
+
+</html>

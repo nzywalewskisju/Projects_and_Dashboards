@@ -1,0 +1,113 @@
+  <!-- Joe Pepe, Oscar Nama, and Nick Zywalewski -->
+  <!-- Database Management Systems -->
+  <!-- 12/3/2025 -->
+  <!-- Final Project -->
+  <!-- Purpose: Implement desired functionality to contribute to a simulated travel agency website and database -->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Cruise</title>
+
+    <!-- Shared top bar + layout styles -->
+    <link rel="stylesheet" href="/images/pageStyling.css">
+    <!-- Shared form styling -->
+    <link rel="stylesheet" href="/images/formPageStyling.css">
+</head>
+
+<body class="form-page">
+
+    <!-- Top bar -->
+    <div class="top-bar">
+        <a href="http://localhost:3000/home" class="top-bar-logo-link">
+            <img src="/images/images/small_ship.jpg"
+                 alt="Travel Agency Icon">
+        </a>
+
+        <div class="top-bar-title">
+            Travel Agency
+        </div>
+
+        <a href="http://localhost:3000/logout"
+           onclick="return confirm('Are you sure you want to sign out? This will end your current session.');"
+           class="top-bar-signout">
+            <span>Sign Out</span>
+            <img src="/images/images/sign_out.jpg" alt="Sign Out">
+        </a>
+    </div>
+
+    <!-- Back link under top bar -->
+    <a href="/cruises" class="back-link-top">Back to Cruise Options</a>
+
+    <div class="form-content">
+
+        <!-- Page title -->
+        <h3 class="page-title">Delete Cruise</h3>
+
+        <!-- Main form card -->
+        <div class="form-container">
+            <form name="cruiseDelete"
+                  action="http://localhost:3000/cruise-delete"
+                  method="post"
+                  onsubmit="return confirmDeletion()">
+
+                <p>
+                    Enter the Cruise ID you want to delete.  
+                    This will also remove any related bookings and categories.
+                </p>
+
+                <label for="cruise_id">Cruise ID</label>
+                <input type="number"
+                       id="cruise_id"
+                       name="cruise_id"
+                       required
+                       placeholder="Enter the cruise's ID (positive number) to delete">
+
+                <div class="button-row">
+                    <input type="submit" value="Delete Cruise" style="background-color:#d9534f;">
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    // Enhanced deletion validation + confirmation
+    document.forms["cruiseDelete"].addEventListener("submit", function (event) {
+        const idField = document.getElementById("cruise_id");
+        const id = idField.value.trim();
+        let errors = [];
+
+        // --- REQUIRED FIELD ---
+        if (!id) {
+            errors.push("Cruise ID is required.");
+        }
+
+        if (errors.length > 0) {
+            event.preventDefault();
+            alert("Please fix the following:\n\n" + errors.join("\n"));
+            return;
+        }
+
+        // --- CONFIRMATION PROMPT ---
+        const confirmation = prompt(
+            "Are you sure you want to delete Cruise ID " + id + "?\n\n" +
+            "If YES, re-enter the Cruise ID.\n" +
+            "If NO, hit Cancel."
+        );
+
+        if (confirmation === null) {
+            // Cancel pressed
+            alert("Deletion cancelled.");
+            event.preventDefault();
+            return;
+        }
+
+        if (confirmation !== id) {
+            alert("Cruise ID did not match. Deletion cancelled.");
+            event.preventDefault();
+        }
+    });
+</script>
