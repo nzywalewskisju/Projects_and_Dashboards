@@ -68,7 +68,7 @@ The script outputs a color-coded US map that highlights how states group based o
 
 | File | Description |
 |------|-------------|
-| `kmeans_us_crime.R` | Main R script containing the complete analysis |
+| `Cluster_Analysis.R` | Main R script containing the complete analysis |
 
 ---
 
