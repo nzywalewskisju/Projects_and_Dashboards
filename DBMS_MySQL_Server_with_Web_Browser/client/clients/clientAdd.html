@@ -1,0 +1,224 @@
+  <!-- Joe Pepe, Oscar Nama, and Nick Zywalewski -->
+  <!-- Database Management Systems -->
+  <!-- 12/3/2025 -->
+  <!-- Final Project -->
+  <!-- Purpose: Implement desired functionality to contribute to a simulated travel agency website and database -->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Add Client</title>
+    <!-- Top bar and shared layout styles -->
+    <link rel="stylesheet" href="/images/pageStyling.css">
+    <!-- Form specific styles -->
+    <link rel="stylesheet" href="/images/formPageStyling.css">
+</head>
+
+<body class="form-page">
+
+    <!-- Top bar -->
+    <div class="top-bar">
+        <a href="http://localhost:3000/home" class="top-bar-logo-link">
+            <img src="/images/images/small_ship.jpg"
+                 alt="Travel Agency Icon">
+        </a>
+
+        <div class="top-bar-title">
+            Travel Agency
+        </div>
+
+        <a href="http://localhost:3000/logout"
+           onclick="return confirm('Are you sure you want to sign out? This will end your current session.');"
+           class="top-bar-signout">
+            <span>Sign Out</span>
+            <img src="/images/images/sign_out.jpg" alt="Sign Out">
+        </a>
+    </div>
+
+    <!-- Back link below the logo / top bar -->
+    <a href="/clients" class="back-link-top">Back to Client Options</a>
+
+    <div class="form-content">
+
+        <!-- Page title -->
+        <h3 class="page-title">Add Client</h3>
+
+        <!-- Main form card -->
+        <div class="form-container">
+            <form name="clientAdd"
+                  action="http://localhost:3000/client-add"
+                  method="post"
+                  autocomplete="off">
+
+                <!-- Client ID -->
+                <label for="client_id">Client ID</label>
+                <input type="number"
+                       name="client_id"
+                       id="client_id"
+                       required
+                       placeholder="Enter a positive number">
+
+                <!-- Client Name -->
+                <label for="client_name">Client Name</label>
+                <input type="text"
+                       name="client_name"
+                       id="client_name"
+                       required
+                       placeholder="Enter the client's name">
+
+                <!-- Date of Birth -->
+                <label for="dob">Date of Birth</label>
+                <input type="date"
+                       name="dob"
+                       id="dob">
+
+                <!-- Email -->
+                <label for="email">Email</label>
+                <input type="email"
+                       name="email"
+                       id="email"
+                       required
+                       placeholder="ex. john.smith@gmail.com">
+
+                <!-- Phone -->
+                <label for="phone">Phone</label>
+                <input type="text"
+                       name="phone"
+                       id="phone"
+                       placeholder="ex. 123-456-7890">
+
+                <!-- Interests row: same category on one line -->
+                <label>Interests (Interest 1 required)</label>
+                <div class="interest-row">
+                    <select name="interest1" id="interest1" required>
+                        <option value="">Select one... (required)</option>
+                        <option value="Site-seeing">Site-seeing</option>
+                        <option value="Good for Kids">Good for Kids</option>
+                        <option value="Thrilling">Thrilling</option>
+                        <option value="Adults Only">Adults Only</option>
+                        <option value="Historical">Historical</option>
+                        <option value="Laid Back">Laid Back</option>
+                    </select>
+
+                    <span class="interest-or">and / or</span>
+
+                    <select name="interest2" id="interest2">
+                        <option value="">Optional</option>
+                        <option value="Site-seeing">Site-seeing</option>
+                        <option value="Good for Kids">Good for Kids</option>
+                        <option value="Thrilling">Thrilling</option>
+                        <option value="Adults Only">Adults Only</option>
+                        <option value="Historical">Historical</option>
+                        <option value="Laid Back">Laid Back</option>
+                    </select>
+
+                    <span class="interest-or">and / or</span>
+
+                    <select name="interest3" id="interest3">
+                        <option value="">Optional</option>
+                        <option value="Site-seeing">Site-seeing</option>
+                        <option value="Good for Kids">Good for Kids</option>
+                        <option value="Thrilling">Thrilling</option>
+                        <option value="Adults Only">Adults Only</option>
+                        <option value="Historical">Historical</option>
+                        <option value="Laid Back">Laid Back</option>
+                    </select>
+                </div>
+
+                <!-- Submit -->
+                <div class="button-row">
+                    <input type="submit" value="Add Client">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Repopulate inputs on error redirect
+        const params = new URLSearchParams(window.location.search);
+
+        function setValue(name) {
+            const el = document.querySelector(`[name="${name}"]`);
+            if (!el) return;
+            const val = params.get(name);
+            if (val !== null) el.value = val;
+        }
+
+        [
+            "client_id", "client_name", "dob", "email", "phone",
+            "interest1", "interest2", "interest3"
+        ].forEach(setValue);
+    </script>
+
+    <script>
+        // Set the maximum date for Date of Birth to today's date
+        function setMaxDateForDOB() {
+            const today = new Date();
+            let month = today.getMonth() + 1;
+            let day = today.getDate();
+            const year = today.getFullYear();
+
+            // Format month and day with leading zero if necessary (YYYY-MM-DD format)
+            if (month < 10) month = '0' + month;
+            if (day < 10) day = '0' + day;
+
+            const maxDate = `${year}-${month}-${day}`;
+
+            const dobInput = document.getElementById('dob');
+            if (dobInput) {
+                dobInput.setAttribute('max', maxDate);
+            }
+        }
+
+        // Run the function when the page loads
+        setMaxDateForDOB();
+    </script>
+
+    <script>
+        document.forms["clientAdd"].addEventListener("submit", function (event) {
+            let form = this;
+            let errors = [];
+
+            // Validate Client ID
+            if (!form.client_id.value || Number(form.client_id.value) <= 0) {
+                errors.push("Client ID must be a positive number.");
+            }
+
+            // Validate Client Name
+            if (!form.client_name.value.trim()) {
+                errors.push("Client Name is required.");
+            }
+
+            // Validate Email
+            if (!form.email.value.trim()) {
+                errors.push("Email is required.");
+            } else {
+                const emailPattern = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+                if (!emailPattern.test(form.email.value.trim())) {
+                    errors.push("Email format is invalid.");
+                }
+            }
+
+            // Validate Interest 1
+            if (!form.interest1.value) {
+                errors.push("Interest 1 is required.");
+            }
+
+            // Optional Interests - check for duplicate selections
+            const interests = [form.interest1.value, form.interest2.value, form.interest3.value].filter(v => v);
+            const duplicates = interests.filter((v, i, a) => a.indexOf(v) !== i);
+            if (duplicates.length > 0) {
+                errors.push("Interests must not have duplicates.");
+            }
+
+            // Handle errors
+            if (errors.length > 0) {
+                event.preventDefault();
+                alert("Please fix the following:\n\n" + errors.join("\n"));
+            }
+        });
+    </script>
+
+
+</body>
+
+</html>

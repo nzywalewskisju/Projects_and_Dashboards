@@ -1,0 +1,221 @@
+  <!-- Joe Pepe, Oscar Nama, and Nick Zywalewski -->
+  <!-- Database Management Systems -->
+  <!-- 12/3/2025 -->
+  <!-- Final Project -->
+  <!-- Purpose: Implement desired functionality to contribute to a simulated travel agency website and database -->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Search Clients</title>
+    <!-- Top bar and shared layout styles -->
+    <link rel="stylesheet" href="/images/pageStyling.css">
+    <!-- Form specific styles -->
+    <link rel="stylesheet" href="/images/formPageStyling.css">
+</head>
+
+<body class="form-page">
+
+    <!-- Top bar -->
+    <div class="top-bar">
+        <a href="http://localhost:3000/home" class="top-bar-logo-link">
+            <img src="/images/images/small_ship.jpg"
+                 alt="Travel Agency Icon">
+        </a>
+
+        <div class="top-bar-title">
+            Travel Agency
+        </div>
+
+        <a href="http://localhost:3000/logout"
+           onclick="return confirm('Are you sure you want to sign out? This will end your current session.');"
+           class="top-bar-signout">
+            <span>Sign Out</span>
+            <img src="/images/images/sign_out.jpg" alt="Sign Out">
+        </a>
+    </div>
+
+    <!-- Back link positioned below logout -->
+    <a href="/clients" class="back-link-top">Back to Client Options</a>
+
+    <div class="form-content">
+        <!-- Page title -->
+        <h3 class="page-title">Search Clients</h3>
+
+        <!-- Main form card -->
+        <div class="form-container">
+            <form name="clientSearch"
+                  action="http://localhost:3000/client-search"
+                  method="post"
+                  autocomplete="off">
+                   <!-- Client ID -->
+                <label for="client_id">Client ID (if known)</label>
+                <input type="number"
+                       name="client_id"
+                       id="client_id"
+                       placeholder="Enter a positive number">
+
+                <!-- Client name -->
+                <label for="client_name">Client Name</label>
+                <input type="text"
+                       name="client_name"
+                       id="client_name"
+                       placeholder="Enter a client's name">
+
+                <!-- Email -->
+                <label for="email">Email</label>
+                <input type="text"
+                       name="email"
+                       id="email"
+                       placeholder="ex. john.smith@gmail.com">
+
+                <!-- Phone -->
+                <label for="phone">Phone</label>
+                <input type="text"
+                       name="phone"
+                       id="phone"
+                       placeholder="ex. 123-456-7890">
+
+                <!-- Date of Birth range -->
+                <label>Date of Birth Range</label>
+                <div class="row">
+                    <div class="row-item">
+                        <span>From:</span>
+                        <input type="date" name="dob_from" id="dob_from">
+                    </div>
+                    <div class="row-item">
+                        <span>To:</span>
+                        <input type="date" name="dob_to" id="dob_to">
+                    </div>
+                </div>
+
+                <!-- Interests -->
+                <label>Interests</label>
+                <div class="interest-row">
+                    <select name="interest1" id="interest1">
+                        <option value="">Select Category</option>
+                        <option value="Site-seeing">Site-seeing</option>
+                        <option value="Good for Kids">Good for Kids</option>
+                        <option value="Thrilling">Thrilling</option>
+                        <option value="Adults Only">Adults Only</option>
+                        <option value="Historical">Historical</option>
+                        <option value="Laid Back">Laid Back</option>
+                    </select>
+
+                    <span class="interest-or">or</span>
+
+                    <select name="interest2" id="interest2">
+                        <option value=""></option>
+                        <option value="Site-seeing">Site-seeing</option>
+                        <option value="Good for Kids">Good for Kids</option>
+                        <option value="Thrilling">Thrilling</option>
+                        <option value="Adults Only">Adults Only</option>
+                        <option value="Historical">Historical</option>
+                        <option value="Laid Back">Laid Back</option>
+                    </select>
+
+                    <span class="interest-or">or</span>
+
+                    <select name="interest3" id="interest3">
+                        <option value=""></option>
+                        <option value="Site-seeing">Site-seeing</option>
+                        <option value="Good for Kids">Good for Kids</option>
+                        <option value="Thrilling">Thrilling</option>
+                        <option value="Adults Only">Adults Only</option>
+                        <option value="Historical">Historical</option>
+                        <option value="Laid Back">Laid Back</option>
+                    </select>
+                </div>
+
+                <!-- Submit -->
+                <div class="button-row">
+                    <input type="submit" value="Search Clients">
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Repopulate fields after search
+        (function () {
+            const params = new URLSearchParams(window.location.search);
+            const fields = [
+                "client_id", "client_name", "email", "phone",
+                "dob_from", "dob_to",
+                "interest1", "interest2", "interest3"
+            ];
+
+            fields.forEach(f => {
+                const el = document.querySelector(`[name="${f}"]`);
+                if (el) el.value = params.get(f) || "";
+            });
+        })();
+    </script>
+
+</body>
+
+</html>
+
+<script>
+        // Set the maximum date for Date of Birth to today's date
+        function setMaxDateForDOB() {
+            const today = new Date();
+            let month = today.getMonth() + 1;
+            let day = today.getDate();
+            const year = today.getFullYear();
+
+            // Format month and day with leading zero if necessary (YYYY-MM-DD format)
+            if (month < 10) month = '0' + month;
+            if (day < 10) day = '0' + day;
+
+            const maxDate = `${year}-${month}-${day}`;
+
+            const dobInput = document.getElementById('dob_from');
+            if (dobInput) {
+                dobInput.setAttribute('max', maxDate);
+            }
+
+            const dobInput2 = document.getElementById('dob_to');
+            if (dobInput2) {
+                dobInput2.setAttribute('max', maxDate);
+            }
+        }
+
+        // Run the function when the page loads
+        setMaxDateForDOB();
+    </script>
+
+<script>
+    document.forms["clientSearch"].addEventListener("submit", function (event) {
+        let form = this;
+        let errors = [];
+
+        // Validate email if entered
+        if (form.email.value.trim() !== "") {
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(form.email.value.trim())) {
+                errors.push("Email: Please enter a valid email address.");
+            }
+        }
+
+        // Validate phone if entered
+        if (form.phone.value.trim() !== "") {
+            const phonePattern = /^[0-9()\-\s+]+$/;
+            if (!phonePattern.test(form.phone.value.trim())) {
+                errors.push("Phone: Only digits, spaces, parentheses, dashes, or '+' allowed.");
+            }
+        }
+
+        // Validate DOB range if both filled
+        const dobFrom = form.dob_from.value;
+        const dobTo = form.dob_to.value;
+        if (dobFrom && dobTo && dobFrom > dobTo) {
+            errors.push("Date of Birth: 'From' cannot be later than 'To'.");
+        }
+
+        // Handle errors
+        if (errors.length > 0) {
+            event.preventDefault(); // stop form submit
+            alert("Please fix the following:\n\n" + errors.join("\n"));
+        }
+    });
+</script>
