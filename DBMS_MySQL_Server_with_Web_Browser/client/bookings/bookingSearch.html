@@ -1,0 +1,112 @@
+  <!-- Joe Pepe, Oscar Nama, and Nick Zywalewski -->
+  <!-- Database Management Systems -->
+  <!-- 12/3/2025 -->
+  <!-- Final Project -->
+  <!-- Purpose: Implement desired functionality to contribute to a simulated travel agency website and database -->
+<html>
+<head>
+    <title>Search Bookings</title>
+    <!-- Shared top bar and layout -->
+    <link rel="stylesheet" href="/images/pageStyling.css">
+    <!-- Form styling -->
+    <link rel="stylesheet" href="/images/formPageStyling.css">
+</head>
+
+<body class="form-page">
+
+    <!-- Top bar -->
+    <div class="top-bar">
+        <a href="http://localhost:3000/home" class="top-bar-logo-link">
+            <img src="/images/images/small_ship.jpg" alt="Travel Agency Icon">
+        </a>
+
+        <div class="top-bar-title">Travel Agency</div>
+
+        <a href="http://localhost:3000/logout"
+           onclick="return confirm('Are you sure you want to sign out? This will end your current session.')"
+           class="top-bar-signout">
+            <span>Sign Out</span>
+            <img src="/images/images/sign_out.jpg" alt="Sign Out">
+        </a>
+    </div>
+
+    <!-- Back link under top bar -->
+    <a href="/bookings" class="back-link-top">Back to Booking Options</a>
+
+    <div class="form-content">
+
+        <!-- Centered title -->
+        <h3 class="page-title">Search Bookings</h3>
+
+        <!-- Form card -->
+        <div class="form-container">
+            <form name="bookingSearch"
+                  action="http://localhost:3000/booking-search"
+                  method="post">
+
+                <label for="clientId">Client ID</label>
+                <input type="text" name="clientId" id="clientId" placeholder="Enter a positive number">
+
+                <label for="clientName">Client Name</label>
+                <input type="text" name="clientName" id="clientName" placeholder="Enter the client's name">
+
+                <label for="cruiseId">Cruise ID</label>
+                <input type="text" name="cruiseId" id="cruiseId" placeholder="Enter a positive number">
+
+                <label for="cruiseName">Cruise Name</label>
+                <input type="text" name="cruiseName" id="cruiseName" placeholder="Enter the cruise's name">
+
+                <div class="button-row">
+                    <input type="submit" value="Search">
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+    <!-- allows for re-populating values when navigating back -->
+    <script>
+        (function () {
+            const params = new URLSearchParams(window.location.search);
+            const form = document.forms["bookingSearch"];
+
+            if (!form) return;
+
+            form.clientId.value   = params.get("clientId")   || "";
+            form.clientName.value = params.get("clientName") || "";
+            form.cruiseId.value   = params.get("cruiseId")   || "";
+            form.cruiseName.value = params.get("cruiseName") || "";
+        })();
+    </script>
+
+    <script>
+        document.forms["bookingSearch"].addEventListener("submit", function (event) {
+            let form = this;
+            let errors = [];
+
+            // Validate Client ID if entered
+            if (form.clientId.value) {
+                if (isNaN(form.clientId.value) || Number(form.clientId.value) <= 0) {
+                    errors.push("Client ID must be a positive number.");
+                }
+            }
+
+            // Validate Cruise ID if entered
+            if (form.cruiseId.value) {
+                if (isNaN(form.cruiseId.value) || Number(form.cruiseId.value) <= 0) {
+                    errors.push("Cruise ID must be a positive number.");
+                }
+            }
+
+            // Handle errors
+            if (errors.length > 0) {
+                event.preventDefault();
+                alert("Please fix the following:\n\n" + errors.join("\n"));
+            }
+        });
+    </script>
+
+
+</body>
+
+</html>

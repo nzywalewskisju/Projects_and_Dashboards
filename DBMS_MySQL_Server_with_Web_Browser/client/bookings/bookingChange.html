@@ -1,0 +1,130 @@
+  <!-- Joe Pepe, Oscar Nama, and Nick Zywalewski -->
+  <!-- Database Management Systems -->
+  <!-- 12/3/2025 -->
+  <!-- Final Project -->
+  <!-- Purpose: Implement desired functionality to contribute to a simulated travel agency website and database -->
+<html>
+<head>
+    <title>Change Booking</title>
+    <!-- Shared top bar and layout -->
+    <link rel="stylesheet" href="/images/pageStyling.css">
+    <!-- Form styling -->
+    <link rel="stylesheet" href="/images/formPageStyling.css">
+</head>
+
+<body class="form-page">
+
+    <!-- Top bar -->
+    <div class="top-bar">
+        <a href="http://localhost:3000/home" class="top-bar-logo-link">
+            <img src="/images/images/small_ship.jpg" alt="Travel Agency Icon">
+        </a>
+
+        <div class="top-bar-title">Travel Agency</div>
+
+        <a href="http://localhost:3000/logout"
+           onclick="return confirm('Are you sure you want to sign out? This will end your current session.')"
+           class="top-bar-signout">
+            <span>Sign Out</span>
+            <img src="/images/images/sign_out.jpg" alt="Sign Out">
+        </a>
+    </div>
+
+    <!-- Back link under top bar -->
+    <a href="/bookings" class="back-link-top">Back to Booking Options</a>
+
+    <div class="form-content">
+
+        <!-- Page title -->
+        <h3 class="page-title">Change Booking</h3>
+
+        <!-- Form card -->
+        <div class="form-container">
+
+            <p style="margin-top: 0; font-size: 0.95rem;">
+                Use this form to move a client from one cruise to another.
+            </p>
+
+            <form name="bookingChange"
+                  action="http://localhost:3000/booking-change"
+                  method="post">
+
+                <label for="client_id">Client ID</label>
+                <input type="number" name="client_id" id="client_id" required placeholder="Enter a positive number">
+
+                <label>Change Cruise</label>
+                <div class="row">
+                    <div class="row-item">
+                        <span>Old Cruise ID</span>
+                        <input type="number" name="old_cruise_id" required placeholder="Enter a positive number">
+                    </div>
+                    <div class="row-item">
+                        <span>New Cruise ID</span>
+                        <input type="number" name="new_cruise_id" required placeholder="Enter a positive number">
+                    </div>
+                </div>
+
+                <div class="button-row">
+                    <input type="submit" value="Change Booking">
+                </div>
+
+            </form>
+        </div>
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    // Allows repopulation of boxes on the bookingChange page
+
+    const params = new URLSearchParams(window.location.search);
+
+    function setValue(name) {
+        const el = document.querySelector(`[name="${name}"]`);
+        if (!el) return;
+        const val = params.get(name);
+        if (val !== null) {
+            el.value = val;
+        }
+    }
+
+    setValue("client_id");
+    setValue("old_cruise_id");
+    setValue("new_cruise_id");
+</script>
+
+<script>
+    document.forms["bookingChange"].addEventListener("submit", function (event) {
+        let form = this;
+        let errors = [];
+
+        // Validate Client ID
+        if (!form.client_id.value || Number(form.client_id.value) <= 0) {
+            errors.push("Client ID must be a positive number.");
+        }
+
+        // Validate Old Cruise ID
+        if (!form.old_cruise_id.value || Number(form.old_cruise_id.value) <= 0) {
+            errors.push("Old Cruise ID must be a positive number.");
+        }
+
+        // Validate New Cruise ID
+        if (!form.new_cruise_id.value || Number(form.new_cruise_id.value) <= 0) {
+            errors.push("New Cruise ID must be a positive number.");
+        }
+
+        // Ensure old and new cruise IDs are not the same
+        if (form.old_cruise_id.value && form.new_cruise_id.value &&
+            Number(form.old_cruise_id.value) === Number(form.new_cruise_id.value)) {
+            errors.push("Old Cruise ID and New Cruise ID cannot be the same.");
+        }
+
+        // Handle errors
+        if (errors.length > 0) {
+            event.preventDefault(); // stop form submission
+            alert("Please fix the following:\n\n" + errors.join("\n"));
+        }
+    });
+</script>

@@ -1,0 +1,71 @@
+  <!-- Joe Pepe, Oscar Nama, and Nick Zywalewski -->
+  <!-- Database Management Systems -->
+  <!-- 12/3/2025 -->
+  <!-- Final Project -->
+  <!-- Purpose: Implement desired functionality to contribute to a simulated travel agency website and database -->
+<html>
+<head>
+    <title>Bookings Page</title>
+    <link rel="stylesheet" href="/images/pageStyling.css">
+</head>
+
+<body class="landing-page bookings-landing">
+
+    <!-- Top bar -->
+    <div class="top-bar">
+        <a href="http://localhost:3000/home" class="top-bar-logo-link">
+            <img src="/images/images/small_ship.jpg"
+                 alt="Travel Agency Icon">
+        </a>
+
+        <div class="top-bar-title">
+            Travel Agency
+        </div>
+
+        <a href="http://localhost:3000/logout"
+           onclick="return confirm('Are you sure you want to sign out? This will end your current session.');"
+           class="top-bar-signout">
+            <span>Sign Out</span>
+            <img src="/images/images/sign_out.jpg" alt="Sign Out">
+        </a>
+    </div>
+
+    <div class="landing-content">
+        <h1 class="landing-title">Bookings Page</h1>
+
+        <div class="card-grid">
+
+            <a href="http://localhost:3000/booking-search" class="option-card">
+                <img src="/images/images/magnifying_glass.jpg"
+                     alt="Search bookings"
+                     class="option-card-icon">
+                <div class="option-card-label">Search for Bookings</div>
+            </a>
+
+            <a href="http://localhost:3000/booking-add" class="option-card">
+                <img src="/images/images/plus_sign.jpg"
+                     alt="Add booking"
+                     class="option-card-icon">
+                <div class="option-card-label">Add a Booking</div>
+            </a>
+
+            <a href="http://localhost:3000/booking-change" class="option-card">
+                <img src="/images/images/pencil_eraser.jpg"
+                     alt="Change booking"
+                     class="option-card-icon">
+                <div class="option-card-label">Change a Booking</div>
+            </a>
+
+            <a href="http://localhost:3000/booking-delete" class="option-card">
+                <img src="/images/images/trashcan.jpg"
+                     alt="Remove booking"
+                     class="option-card-icon">
+                <div class="option-card-label">Remove a Booking</div>
+            </a>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

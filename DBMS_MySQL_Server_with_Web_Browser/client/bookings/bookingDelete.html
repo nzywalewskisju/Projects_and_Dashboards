@@ -1,0 +1,122 @@
+  <!-- Joe Pepe, Oscar Nama, and Nick Zywalewski -->
+  <!-- Database Management Systems -->
+  <!-- 12/3/2025 -->
+  <!-- Final Project -->
+  <!-- Purpose: Implement desired functionality to contribute to a simulated travel agency website and database -->
+<html>
+
+<head>
+    <title>Delete Booking</title>
+    <!-- Shared top bar and layout -->
+    <link rel="stylesheet" href="/images/pageStyling.css">
+    <!-- Form styling -->
+    <link rel="stylesheet" href="/images/formPageStyling.css">
+</head>
+
+<body class="form-page">
+
+    <!-- Top bar -->
+    <div class="top-bar">
+        <a href="http://localhost:3000/home" class="top-bar-logo-link">
+            <img src="/images/images/small_ship.jpg" alt="Travel Agency Icon">
+        </a>
+
+        <div class="top-bar-title">Travel Agency</div>
+
+        <a href="http://localhost:3000/logout"
+            onclick="return confirm('Are you sure you want to sign out? This will end your current session.')"
+            class="top-bar-signout">
+            <span>Sign Out</span>
+            <img src="/images/images/sign_out.jpg" alt="Sign Out">
+        </a>
+    </div>
+
+    <!-- Back link under top bar -->
+    <a href="/bookings" class="back-link-top">Back to Booking Options</a>
+
+    <div class="form-content">
+
+        <!-- Page title -->
+        <h3 class="page-title">Delete Booking</h3>
+
+        <!-- Form card -->
+        <div class="form-container">
+
+            <p style="margin-top: 0; font-size: 0.95rem;">
+                Enter the Client ID and Cruise ID for the booking you want to delete.
+                This removes the booking but does not delete the client or cruise.
+            </p>
+
+            <form name="bookingDelete" action="http://localhost:3000/booking-delete" method="post"
+                onsubmit="return confirmBookingDeletion()">
+
+                <label for="client_id">Client ID</label>
+                <input type="number" id="client_id" name="client_id" required placeholder="Enter a positive number">
+
+                <label for="cruise_id">Cruise ID</label>
+                <input type="number" id="cruise_id" name="cruise_id" required placeholder="Enter a positive number">
+
+                <div class="button-row">
+                    <input type="submit" value="Delete Booking" style="background-color:#d9534f;">
+                </div>
+
+            </form>
+        </div>
+    </div>
+    <script>
+        document.forms["bookingDelete"].addEventListener("submit", function (event) {
+            const clientField = document.getElementById("client_id");
+            const cruiseField = document.getElementById("cruise_id");
+            const clientId = clientField.value.trim();
+            const cruiseId = cruiseField.value.trim();
+            let errors = [];
+
+            // --- REQUIRED FIELDS ---
+            if (!clientId) {
+                errors.push("Client ID is required.");
+            } else if (Number(clientId) <= 0) {
+                errors.push("Client ID must be a positive number.");
+            }
+
+            if (!cruiseId) {
+                errors.push("Cruise ID is required.");
+            } else if (Number(cruiseId) <= 0) {
+                errors.push("Cruise ID must be a positive number.");
+            }
+
+            if (errors.length > 0) {
+                event.preventDefault();
+                alert("Please fix the following:\n\n" + errors.join("\n"));
+                return;
+            }
+
+            // --- CONFIRMATION PROMPTS ---
+            const confirmClient = prompt(
+                "Are you sure you want to delete this booking?\n\n" +
+                "Enter the Client ID again to confirm.\n" +
+                "Or click Cancel to stop."
+            );
+
+            if (confirmClient === null) {
+                alert("Deletion cancelled.");
+                event.preventDefault();
+                return;
+            }
+
+            const confirmCruise = prompt(
+                "Now enter the Cruise ID again to confirm deletion.\n" +
+                "Or click Cancel to stop."
+            );
+
+            if (confirmCruise === null) {
+                alert("Deletion cancelled.");
+                event.preventDefault();
+                return;
+            }
+
+            if (confirmClient !== clientId || confirmCruise !== cruiseId) {
+                alert("Client ID and Cruise ID did not both match. Deletion cancelled.");
+                event.preventDefault();
+            }
+        });
+    </script>

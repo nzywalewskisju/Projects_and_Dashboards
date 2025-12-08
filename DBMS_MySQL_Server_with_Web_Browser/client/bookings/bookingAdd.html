@@ -1,0 +1,107 @@
+  <!-- Joe Pepe, Oscar Nama, and Nick Zywalewski -->
+  <!-- Database Management Systems -->
+  <!-- 12/3/2025 -->
+  <!-- Final Project -->
+  <!-- Purpose: Implement desired functionality to contribute to a simulated travel agency website and database -->
+
+<html>
+<head>
+    <title>Add Booking</title>
+    <!-- Shared top bar and layout -->
+    <link rel="stylesheet" href="/images/pageStyling.css">
+    <!-- Form styling -->
+    <link rel="stylesheet" href="/images/formPageStyling.css">
+</head>
+
+<body class="form-page">
+
+    <!-- Top bar -->
+    <div class="top-bar">
+        <a href="http://localhost:3000/home" class="top-bar-logo-link">
+            <img src="/images/images/small_ship.jpg" alt="Travel Agency Icon">
+        </a>
+
+        <div class="top-bar-title">Travel Agency</div>
+
+        <a href="http://localhost:3000/logout"
+           onclick="return confirm('Are you sure you want to sign out? This will end your current session.')"
+           class="top-bar-signout">
+            <span>Sign Out</span>
+            <img src="/images/images/sign_out.jpg" alt="Sign Out">
+        </a>
+    </div>
+
+    <!-- Back link under top bar -->
+    <a href="/bookings" class="back-link-top">Back to Booking Options</a>
+
+    <div class="form-content">
+
+        <!-- Page title -->
+        <h3 class="page-title">Add Booking</h3>
+
+        <!-- Form card -->
+        <div class="form-container">
+            <form name="bookingAdd"
+                  action="http://localhost:3000/booking-add"
+                  method="post">
+
+                <label for="client_id">Client ID</label>
+                <input type="number" name="client_id" id="client_id" required placeholder="Enter a positive number">
+
+                <label for="cruise_id">Cruise ID</label>
+                <input type="number" name="cruise_id" id="cruise_id" required placeholder="Enter a positive number">
+
+                <div class="button-row">
+                    <input type="submit" value="Add Booking">
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+
+</body>
+
+</html>
+
+<script>
+    // Allows for boxes to re-populate if an error occurs
+
+    const params = new URLSearchParams(window.location.search);
+
+    function setValue(name) {
+        const el = document.querySelector(`[name="${name}"]`);
+        if (!el) return;
+        const val = params.get(name);
+        if (val !== null) {
+            el.value = val;
+        }
+    }
+
+    setValue("client_id");
+    setValue("cruise_id");
+
+</script>
+
+<script>
+    document.forms["bookingAdd"].addEventListener("submit", function (event) {
+        let form = this;
+        let errors = [];
+
+        // Validate Client ID
+        if (!form.client_id.value || Number(form.client_id.value) <= 0) {
+            errors.push("Client ID must be a positive number.");
+        }
+
+        // Validate Cruise ID
+        if (!form.cruise_id.value || Number(form.cruise_id.value) <= 0) {
+            errors.push("Cruise ID must be a positive number.");
+        }
+
+        // Handle errors
+        if (errors.length > 0) {
+            event.preventDefault(); // stop form submission
+            alert("Please fix the following:\n\n" + errors.join("\n"));
+        }
+    });
+</script>
