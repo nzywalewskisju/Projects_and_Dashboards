@@ -33,4 +33,4 @@ Each project is organized in its own folder with a Google Colab notebook for int
 ### [R Janitor Package](R_Janitor_Package/)
 - Demonstrates practical data cleaning workflows using the **`janitor`** package in R  
 - Standardizes column names, removes empty/constant fields, identifies duplicates, and summarizes categorical variables  
-- Includes example dataset, R script, and accompanying presentation used for classroom instruction
+- Includes example dataset and an R script used for classroom instruction
