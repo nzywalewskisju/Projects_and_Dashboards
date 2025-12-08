@@ -1,6 +1,10 @@
+# About Me
+Hello! My name is Nick Zywalewski, and I am currently a senior at Saint Joseph's University in Philadelphia, where I study Data Science, Business Intelligence & Analytics, and Mathematics!
+I have experience with several coding languages: Python, R, MSQL, Java, JavaScript, VBA, and HTML/CSS. I also skilled in other areas that aid in data analysis: Tableau, Alteryx, JMP, Excel.
+I have honed these skills in my classwork, and in my industry experiences with Susquehanna International Group and Keystone Technologies. Upon graduation, I will be working at Johnson & Johnson within the Innovative Medicine sector.
+
 # Projects & Dashboards
-Welcome to my portfolio!  
-This repository highlights projects I’ve worked on in data analytics, machine learning, and artificial intelligence.  
+Welcome to my portfolio! This repository highlights projects I’ve worked on in data analytics, machine learning, and artificial intelligence.  
 Each project is organized in its own folder with a Google Colab notebook for interactive exploration, a detailed README, and other resources. 
 
 ## Projects
