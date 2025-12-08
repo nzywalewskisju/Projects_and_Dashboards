@@ -1,0 +1,165 @@
+  /*
+  Joe Pepe, Oscar Nama, and Nick Zywalewski
+  Database Management Systems
+  12/3/2025
+  Final Project
+  Purpose: Implement desired functionality to contribute to a simulated travel agency website and database
+  */
+body.landing-page {
+    margin: 0;
+    font-family: arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Background images per landing page */
+body.cruises-landing {
+    background-image: url("/images/images/cruisesLanding.jpg");
+}
+
+body.clients-landing {
+    background-image: url("/images/images/clientsLanding.jpg");
+}
+
+body.bookings-landing {
+    background-image: url("/images/images/bookingsLanding.jpg");
+}
+
+/* Top bar (same look as home page) */
+.top-bar {
+    width: 100%;
+    height: 60px;
+    background-color: #f2f2f2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #ccc;
+    position: relative;
+}
+
+.top-bar-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.top-bar-logo-link {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%); /* centers within the bar vertically */
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.top-bar-logo-link img {
+    height: 50px;
+    object-fit: contain;
+}
+
+.top-bar-signout {
+    position: absolute;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+}
+
+.top-bar-signout span {
+    margin-right: 5px;
+    font-size: 1rem;
+}
+
+.top-bar-signout img {
+    height: 40px;
+    cursor: pointer;
+}
+
+/* Main landing content */
+.landing-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 80px;
+    padding-bottom: 50px;
+    box-sizing: border-box;
+}
+
+/* Landing Page title */
+.landing-title {
+    font-size: 3rem;
+    margin: 0 0 50px 0;
+    text-align: center;
+}
+
+/* Each box goes across the page in a row */
+.card-grid {
+    display: flex;
+    flex-wrap: nowrap;       /* one row */
+    justify-content: center;
+    gap: 40px;
+    max-width: 1200px;
+    width: 100%;
+
+    margin-top: 50px;        /* previously 40px */
+    margin-bottom: auto;
+}
+
+/* Each clickable card */
+.option-card {
+    background-color: #ffffff;
+    border-radius: 24px;
+    width: 280px;
+    height: 260px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    text-decoration: none;
+    color: #000000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.option-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.35);
+}
+
+.option-card-icon {
+    flex: 1 1 auto;
+    max-height: 180px;
+    width: auto;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
+.option-card-label {
+    flex: 0 0 auto;
+    font-size: 1rem;
+    text-align: center;
+}
+
+/* Back to home link at bottom (optional if you want it) */
+.back-home-wrapper {
+    margin-top: 30px;
+}
+
+.back-home-link {
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: 1px solid #333;
+    background-color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    color: #000;
+    font-size: 0.95rem;
+}

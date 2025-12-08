@@ -1,0 +1,79 @@
+  <!-- Joe Pepe, Oscar Nama, and Nick Zywalewski -->
+  <!-- Database Management Systems -->
+  <!-- 12/3/2025 -->
+  <!-- Final Project -->
+  <!-- Purpose: Implement desired functionality to contribute to a simulated travel agency website and database -->
+<html>
+
+<body style="margin:0; font-family:arial; display:flex; flex-direction:column; align-items:center;">
+
+    <!-- Ship image -->
+    <div style="width:100%; text-align:center; margin-top:20px;">
+        <img src="/images/images/small_ship.jpg" alt="Travel Agency" style="height:25vh; object-fit:contain;">
+    </div>
+
+    <br><br>
+
+    <!-- Title -->
+    <h2 style="font-size:2rem; font-weight:bold; margin-top:10px;">
+        Travel Agency Login</h2>
+
+    <!-- Login form -->
+    <form id="loginForm" method="POST" action="/login" style="margin-top:20px; text-align:center;">
+        <label style="display:block; margin-bottom:5px; font-size:25px">Username:</label>
+        <input type="text" id="username" name="username" style="width:200px;"><br><br>
+
+        <label style="display:block; margin-bottom:5px; font-size:25px">Password:</label>
+        <input type="password" id="password" name="password" style="width:200px;"><br><br>
+
+        <!-- This displays BOTH client validation errors and server errors -->
+        <div id="error" style="color:red; font-size:18px; margin-bottom:10px;"></div>
+
+        <button type="submit" style="
+                width:200px;
+                font-size:25px;
+                padding:10px 0;
+                background-color:#FFA500;
+                color:white;
+                border:none;
+                border-radius:10px;
+                cursor:pointer;">
+            Login
+        </button>
+    </form>
+
+    <!-- Client-side + server-side error handler -->
+    <script>
+        // ---- 1. CHECK FOR SERVER ERROR (?error=1) ----
+        const params = new URLSearchParams(window.location.search);
+        if (params.get("error") === "1") {
+            document.getElementById("error").innerText = "Incorrect username or password.";
+        }
+
+        // ---- 2. CLIENT-SIDE VALIDATION ----
+        document.getElementById("loginForm").addEventListener("submit", function (event) {
+            const username = document.getElementById("username").value.trim();
+            const password = document.getElementById("password").value.trim();
+            const errorBox = document.getElementById("error");
+            errorBox.innerHTML = "";
+
+            const usernameRegex = /^[^\s]{1,50}$/; // no spaces
+            const passwordRegex = /^.{6,}$/;       // any chars, min 6
+
+            if (!usernameRegex.test(username)) {
+                errorBox.innerHTML = "Username may include letters, numbers, and special characters (no spaces allowed).";
+                event.preventDefault();
+                return;
+            }
+
+            if (!passwordRegex.test(password)) {
+                errorBox.innerHTML = "Password must be at least 6 characters long.";
+                event.preventDefault();
+                return;
+            }
+        });
+    </script>
+
+</body>
+
+</html>

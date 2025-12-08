@@ -1,0 +1,165 @@
+  /*
+  Joe Pepe, Oscar Nama, and Nick Zywalewski
+  Database Management Systems
+  12/3/2025
+  Final Project
+  Purpose: Implement desired functionality to contribute to a simulated travel agency website and database
+  */
+body.form-page {
+    margin: 0;
+    font-family: arial, sans-serif;
+    background-color: #f8f9fa;
+}
+
+.form-content {
+    width: 100%;
+    margin: 20px 20px;
+    padding-right: 20px; /* new */
+    padding-left: 20px;  /* new */
+    box-sizing: border-box;
+}
+
+/* Page title */
+.page-title {
+    font-size: 2rem;
+    font-weight: bold;
+    color: tomato;
+    margin: 10px 0 20px;
+    text-align: center;   /* center it */
+}
+
+/* Form wrapper */
+.form-container {
+    background: white;
+    padding: 20px 30px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+
+    width: 100%;
+    max-width: 900px;       /* prevent going too wide on large screens */
+    margin: 0 auto;         /* center it */
+}
+
+/* Labels and inputs */
+.form-container input,
+.form-container select,
+.form-container textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 4px;
+    margin-bottom: 14px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+.form-container label {
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 4px;
+    display: block;
+}
+
+/* Submit and action buttons */
+.button-row {
+    margin-top: 12px;
+    display: flex;
+    gap: 15px;
+}
+
+.button-row input[type="submit"],
+.button-row a {
+    padding: 8px 16px;
+    border-radius: 8px;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.button-row input[type="submit"]:hover,
+.button-row a:hover {
+    background-color: #0056b3;
+}
+
+/* Bottom links */
+.footer-links {
+    margin-top: 10px;
+    margin-left: 40px;
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    display: block;
+    margin-bottom: 8px;
+    text-decoration: none;
+    color: #333;
+    font-size: 0.95rem;
+}
+
+.back-link-top {
+    position: absolute;
+    top: 75px;         /* right below the top bar */
+    left: 20px;        /* left side, under the logo */
+    font-size: 0.9rem;
+    color: #555;
+    text-decoration: none;
+}
+
+.back-link-top:hover {
+    text-decoration: underline;
+}
+
+.interest-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+.interest-row select {
+    flex: 1;
+}
+
+.interest-or {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+/* Row for DOB From / To */
+.row {
+    display: flex;
+    gap: 12px;               /* space between From / To blocks */
+    margin-bottom: 14px;
+}
+
+.row-item {
+    flex: 1;                 /* each half takes equal width */
+    display: flex;
+    flex-direction: column;  /* label text above input */
+}
+
+.row-item input[type="date"] {
+    width: 100%;
+}
+
+/* Row for three interest dropdowns */
+.interest-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+}
+
+.interest-row select {
+    flex: 1;                 /* each dropdown shares the row evenly */
+}
+
+/* small “or” text between selects */
+.interest-or {
+    font-size: 0.9rem;
+    color: #555;
+}

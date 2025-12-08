@@ -1,0 +1,79 @@
+  <!-- Joe Pepe, Oscar Nama, and Nick Zywalewski -->
+  <!-- Database Management Systems -->
+  <!-- 12/3/2025 -->
+  <!-- Final Project -->
+  <!-- Purpose: Implement desired functionality to contribute to a simulated travel agency website and database -->
+<html>
+
+<head>
+    <title>Home Page</title>
+    <link rel="stylesheet" href="/images/pageStyling.css">
+</head>
+
+<body style="margin:0; font-family:arial">
+
+    <!-- Top bar -->
+    <div class="top-bar">
+        <a href="http://localhost:3000/home" class="top-bar-logo-link">
+            <img src="/images/images/small_ship.jpg" alt="Travel Agency Icon">
+        </a>
+
+        <div class="top-bar-title">
+            Travel Agency
+        </div>
+
+        <a href="http://localhost:3000/logout"
+           onclick="return confirm('Are you sure you want to sign out? This will end your current session.');"
+           class="top-bar-signout">
+            <span>Sign Out</span>
+            <img src="/images/images/sign_out.jpg" alt="Sign Out">
+        </a>
+    </div>
+
+<div style="display:flex; height:100vh; width:100%">
+
+    <!-- Cruises clickable panel -->
+    <a href="http://localhost:3000/cruises" style="flex:0 0 33%; display:block; height:100%; text-decoration:none; color:inherit;">
+        <div style="position:relative; overflow:hidden; height:100%;">
+            <img src="/images/images/cruise_ship.jpg" 
+                 alt="Cruises" 
+                 style="width:100%; height:100%; object-fit:cover; cursor:pointer;">
+            <div style="position:absolute; top:12%; left:50%; transform:translate(-50%, -50%);
+                        font-size:2rem; font-weight:bold; color:white; text-shadow:1px 1px 4px black;">
+                Cruises
+            </div>
+        </div>
+    </a>
+
+    <!-- Clients clickable panel -->
+    <a href="http://localhost:3000/clients"
+       style="flex:0 0 33%; display:block; height:100%; text-decoration:none; color:inherit;">
+        <div style="position:relative; overflow:hidden; height:100%;">
+            <img src="/images/images/customers.jpg"
+                 alt="Clients"
+                 style="width:100%; height:100%; object-fit:cover; cursor:pointer;">
+            <div style="position:absolute; top:12%; left:50%; transform:translate(-50%, -50%);
+                        font-size:2rem; font-weight:bold; color:black;">
+                Clients
+            </div>
+        </div>
+    </a>
+
+    <!-- Bookings clickable panel -->
+    <a href="http://localhost:3000/bookings"
+       style="flex:0 0 33%; display:block; height:100%; text-decoration:none; color:inherit;">
+        <div style="position:relative; overflow:hidden; height:100%;">
+            <img src="/images/images/pen_and_paper.jpg"
+                 alt="Bookings"
+                 style="width:100%; height:100%; object-fit:cover; cursor:pointer;">
+            <div style="position:absolute; top:12%; left:50%; transform:translate(-50%, -50%);
+                        font-size:2rem; font-weight:bold; color:white; text-shadow:1px 1px 4px black;">
+                Bookings
+            </div>
+        </div>
+    </a>
+
+</div>
+
+</body>
+</html>
