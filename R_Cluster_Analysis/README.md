@@ -77,3 +77,5 @@ The script outputs a color-coded US map that highlights how states group based o
 ### Install Required Libraries (only once)
 ```r
 install.packages(c("tidyverse", "cluster", "factoextra", "usmap"))
+
+Open the R script in your preferred IDE (such as RStudio) and execute it line by line or run the entire file. The visualizations and outputs will generate in the R plotting window.
