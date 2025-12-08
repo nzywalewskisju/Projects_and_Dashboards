@@ -30,6 +30,11 @@ Each project is organized in its own folder with a Google Colab notebook for int
 - Each dashboard is designed to communicate insights clearly and support real-world decision making
 - [**View on Tableau Public**](https://public.tableau.com/app/profile/nicolas.zywalewski/vizzes)
 
+ ### [Cluster Analysis of U.S. State Crime Data](R_Cluster_Analysis_Crime_Data/)
+- Performed a k-means clustering study using state-level crime statistics  
+- Identified regional patterns in violent crime, property crime, and policing levels  
+- Standardized features, evaluated optimal cluster counts, and visualized results for insight into crime similarity across states  
+
 ### [Airline Tweets Classification Project](Text_Classification_NN/)
 - Trained **two neural networks** (LSTM and CNN) to classify tweets about U.S. airlines  
 - Sentiment classification into **positive, negative, or neutral** categories 
