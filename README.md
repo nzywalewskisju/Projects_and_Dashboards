@@ -5,7 +5,7 @@ Hello, and welcome to my portfolio! My name is Nick Zywalewski, and I am current
 
 # Projects & Dashboards
 This repository highlights projects I’ve worked on in data analytics, machine learning, and artificial intelligence.  
-Each project is organized in its own folder with a Google Colab notebook for interactive exploration, a detailed README, and other resources. 
+Each project is organized in its own folder with all of the important files, a detailed README, and other resources. 
 
 ### [Deep Learning Approach for Calculating Exit Velocity](Deep_Learning_Exit_Velocity/) **[Python]**
 - Built a deep learning model in Python to estimate baseball exit velocity using swing and pitch data  
