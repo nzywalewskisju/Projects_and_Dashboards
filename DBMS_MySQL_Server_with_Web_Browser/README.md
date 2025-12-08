@@ -1,4 +1,6 @@
-# DB_FinalProject
+# DBMS MySQL Server with Web Browser
+I completed this project with two of my classmates from Saint Joseph's University: Joseph Pepe and Oscar Nama.
+
 # CSC351 Database Management Systems
 This markdown is a rough outline of our project. It will include overall functionality, how to run it, and a description of how it works. <br/>
 
@@ -93,3 +95,4 @@ Go to http://localhost:3000/home  <br/>
     ├── README.md
     └── requirements.txt
 ```
+
