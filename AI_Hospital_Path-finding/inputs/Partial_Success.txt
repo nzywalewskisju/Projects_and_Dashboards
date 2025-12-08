@@ -1,0 +1,3 @@
+Delivery Algorithm: A*
+Start Location: (0,38)
+Delivery Locations: Burn Ward, General Ward, Oncology, Pediatric Ward, Medical Ward, Isolation Ward

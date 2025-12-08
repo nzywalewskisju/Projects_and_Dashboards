@@ -1,0 +1,3 @@
+Delivery Algorithm: A*
+Start Location: (11,5)
+Delivery Locations: Medical Ward

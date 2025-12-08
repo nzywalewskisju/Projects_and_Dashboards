@@ -1,0 +1,3 @@
+Delivery Algorithm: A*
+Start Location: (41,0)
+Delivery Locations: Maternity Ward, Emergency, Oncology, Admissions
