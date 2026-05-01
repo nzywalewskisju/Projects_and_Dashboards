@@ -20,7 +20,13 @@ Each project is organized in its own folder with all of the important files, a d
 ### [Hospital Robot Nurse Pathfinding](AI_Hospital_Path-finding/) **[Python]**
 - Simulated a hospital delivery robot in Python to navigate between wards using graph search algorithms  
 - Implemented A* and Dijkstra algorithms to compare optimal routing under varying constraints  
-- Developed in Python with Tkinter and environment customization representing real hospital layouts  
+- Developed in Python with Tkinter and environment customization representing real hospital layouts
+
+### [NFL Play Type Predictor](NFL_Play_Type_Predictor/) **[R]**
+- Trained a neural network in R to predict NFL play types using 2024 play-by-play data
+- Classifies plays into five categories: run left, run middle, run right, short pass, and long pass
+- Features down, distance, field position, clock, score differential, formation, and situational flags
+- Includes an interactive R Shiny app for real-time play probability predictions
 
 ### [Baseball Statistics Projections](baseball_statistics_projections/) **[Python]**
 - Projected On-Base Percentage in Python using historical season data and machine learning models  
