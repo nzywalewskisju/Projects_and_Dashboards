@@ -1,0 +1,170 @@
+# profile.py
+# Medium-term user profile memory that persists across sessions.
+# Automatically extracts personal employment facts from user messages and
+# stores them to disk per user. Injected as context into relevant queries
+# so the agent can apply policy to the user's specific situation without
+# re-asking every session. Users can view and delete facts from the GUI.
+# Persisted to data/profiles/{user_id}.json
+#
+# Functions: load_profile, save_profile, extract_and_update_profile,
+#            get_profile_context_string, get_relevant_profile_context,
+#            delete_profile_fact, clear_profile, _get_profile_path
+
+import json
+import os
+from datetime import datetime
+from src.tools.utils import call_llm, safe_json_parse
+
+
+PROFILES_DIR = "./data/profiles"
+
+
+def _get_profile_path(user_id: str) -> str:
+    # Returns the file path for the user's profile JSON file.
+    return f"{PROFILES_DIR}/{user_id}.json"
+
+
+def load_profile(user_id: str) -> dict:
+    # Reads and returns the user's profile dict from disk.
+    # Returns an empty profile if none exists yet.
+
+    path = _get_profile_path(user_id)
+    if not os.path.exists(path):
+        return {"user_id": user_id, "facts": {}}
+    with open(path, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
+def save_profile(user_id: str, profile: dict) -> None:
+    # Writes the profile dict to the user's profile JSON file on disk.
+    
+    os.makedirs(PROFILES_DIR, exist_ok=True)
+    path = _get_profile_path(user_id)
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(profile, f, indent=2)
+
+
+def extract_and_update_profile(user_id: str, message: str) -> list[str]:
+    # Sends the user's message to the LLM to extract employment facts,
+    # merges any new facts into the persisted profile, and returns a
+    # list of newly added fact labels for the GUI to display.
+
+    system_prompt = """You are a fact extractor for an HR assistant.
+Extract any personal employment facts the user mentions about themselves.
+Only extract facts about the user themselves — not about other employees.
+Look for: job title/role, years of employment, employment type (full-time/part-time/contractor),
+department, location, any ongoing HR situations they mention (e.g. on leave, in a PIP).
+Do not extract sensitive medical details.
+If no facts are found, return an empty dict.
+Respond only in JSON: {"facts": {"role": "...", "employment_duration": "...", ...}}
+Use only the keys that are present. Do not invent keys."""
+
+    response = call_llm(message, system_prompt=system_prompt)
+    extracted = safe_json_parse(response, fallback={"facts": {}})
+    new_facts = extracted.get("facts", {})
+
+    if not new_facts:
+        return []
+
+    profile = load_profile(user_id)
+    newly_added = []
+
+    for key, value in new_facts.items():
+        if value is None or str(value).strip().lower() in ("none", "", "null", "n/a"):
+            continue
+        if key not in profile["facts"] or profile["facts"][key] != value:
+            profile["facts"][key] = value
+            profile["last_updated"] = datetime.utcnow().isoformat()
+            newly_added.append(f"{key.replace('_', ' ').title()}: {value}")
+
+    if newly_added:
+        save_profile(user_id, profile)
+
+    return newly_added
+
+
+def get_profile_context_string(user_id: str) -> str:
+    # Returns all stored profile facts as a formatted string for
+    # injection into agent prompts.
+
+    profile = load_profile(user_id)
+    facts = profile.get("facts", {})
+
+    if not facts:
+        return "No profile information known about this user yet."
+
+    lines = ["Known facts about this user:"]
+    for key, value in facts.items():
+        label = key.replace("_", " ").title()
+        lines.append(f"  - {label}: {value}")
+
+    return "\n".join(lines)
+
+
+def delete_profile_fact(user_id: str, fact_key: str) -> bool:
+    # Removes a single fact from the user's profile and saves to disk.
+    # Called when the user deletes a fact from the GUI profile panel.
+
+    profile = load_profile(user_id)
+    if fact_key in profile.get("facts", {}):
+        del profile["facts"][fact_key]
+        save_profile(user_id, profile)
+        return True
+    return False
+
+
+def clear_profile(user_id: str) -> None:
+    # Wipes all facts from the user's profile and saves the empty state.
+    
+    profile = load_profile(user_id)
+    profile["facts"] = {}
+    save_profile(user_id, profile)
+
+def get_relevant_profile_context(user_id: str, query: str) -> str:
+    # Returns only the profile facts relevant to the current query topic.
+    # Prevents unrelated facts from contaminating the agent's reasoning.
+
+    profile = load_profile(user_id)
+    facts = profile.get("facts", {})
+
+    if not facts:
+        return "No profile information known about this user yet."
+
+    query_lower = query.lower()
+
+    # Facts that are always relevant regardless of query topic
+    always_relevant = ["role", "employment_type", "employment_duration", "department"]
+
+    # Location only relevant for state-specific policy questions
+    location_keywords = [
+        "california", "state", "new york", "washington", "illinois",
+        "georgia", "leave", "fmla", "parental", "sick", "pto",
+        "family leave", "disability", "accommodation"
+    ]
+    location_relevant = any(k in query_lower for k in location_keywords)
+
+    # Ongoing situations only relevant for related queries
+    situation_keywords = [
+        "leave", "pip", "complaint", "fmla", "accommodation",
+        "performance", "investigation", "grievance"
+    ]
+    situation_relevant = any(k in query_lower for k in situation_keywords)
+
+    relevant_facts = {}
+    for key, value in facts.items():
+        if key in always_relevant:
+            relevant_facts[key] = value
+        elif key == "location" and location_relevant:
+            relevant_facts[key] = value
+        elif key == "ongoing_situations" and situation_relevant:
+            relevant_facts[key] = value
+
+    if not relevant_facts:
+        return "No relevant profile information for this query."
+
+    lines = ["Known facts about this user:"]
+    for key, value in relevant_facts.items():
+        label = key.replace("_", " ").title()
+        lines.append(f"  - {label}: {value}")
+
+    return "\n".join(lines)
